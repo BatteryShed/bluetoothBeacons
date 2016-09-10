@@ -13,9 +13,6 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
     let beaconManager = ESTBeaconManager()
     let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "Range Region")
     
-    @IBOutlet weak var ProtoLabel: UILabel!
-    @IBOutlet weak var ProtoImage: UIImageView!
-    
     @IBOutlet weak var tableView: UITableView!
     
     let content = ["Dog", "Cat", "Ratty"]
@@ -27,7 +24,6 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -58,9 +54,12 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-       let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath) as! ContentCell
         
-        cell.
+        cell.ProtoLabel?.text = content[indexPath.row]
+        cell.ProtoImage.image = UIImage(named: "tasdev")
+        
+        return cell
     }
     
     func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
