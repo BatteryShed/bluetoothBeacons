@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, ESTBeaconManagerDelegate{
     
     let beaconManager = ESTBeaconManager()
-    let beaconRegion = CLBeaconRegion(proximityUUID: NSUUID(UUIDString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "Range Region")
+    let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "Range Region")
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -29,14 +29,14 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    override func viewWillAppear(animated: Bool){
+    override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
-        self.beaconManager.startRangingBeaconsInRegion(beaconRegion)
+        self.beaconManager.startRangingBeacons(in: beaconRegion)
     }
     
-    override func viewDidDisappear(animated:Bool){
+    override func viewDidDisappear(_ animated:Bool){
         super.viewDidDisappear(animated)
-        self.beaconManager.stopMonitoringForRegion(beaconRegion)
+        self.beaconManager.stopMonitoring(for: beaconRegion)
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,16 +45,16 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
     }
     
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return content.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("InfoCell", forIndexPath: indexPath) as! ContentCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! ContentCell
         
         cell.ProtoLabel?.text = content[indexPath.row]
         cell.ProtoImage.image = UIImage(named: "tasdev")
@@ -62,7 +62,7 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
         return cell
     }
     
-    func beaconManager(manager: AnyObject, didRangeBeacons beacons: [CLBeacon], inRegion region: CLBeaconRegion) {
+    func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         for beacon in beacons{
             NSLog(beacon.description)
         }
