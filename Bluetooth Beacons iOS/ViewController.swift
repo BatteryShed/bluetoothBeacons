@@ -12,10 +12,11 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
     
     let beaconManager = ESTBeaconManager()
     let beaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "B9407F30-F5F8-466E-AFF9-25556B57FE6D")!, identifier: "Range Region")
-    
+    let database = DatabaseManager()
+
     @IBOutlet weak var tableView: UITableView!
     
-    let content = ["Dog", "Cat", "Ratty"]
+    var content:[Item] = []
     
     override func viewDidLoad() {
         self.beaconManager.delegate = self
@@ -56,16 +57,14 @@ class ViewController: UIViewController,UITableViewDataSource, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell", for: indexPath) as! ContentCell
         
-        cell.ProtoLabel?.text = content[indexPath.row]
-        cell.ProtoImage.image = UIImage(named: "tasdev")
+        cell.ProtoLabel?.text = content[indexPath.row].title
+        cell.ProtoImage.image = UIImage(named: content[indexPath.row].image_name)
         
         return cell
     }
     
     func beaconManager(_ manager: Any, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        for beacon in beacons{
-            NSLog(beacon.description)
-        }
+        content = database.getVisibleBeacons(beaconsInRange: beacons)
     }
 
 }

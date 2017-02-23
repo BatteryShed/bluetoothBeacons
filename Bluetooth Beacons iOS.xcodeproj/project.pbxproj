@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E2E4F18BCB0CEF282A35895 /* databaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2E48E14603DFE0A4DA9A15 /* databaseManager.swift */; };
 		EF555ACB1D845EA5007F3AFB /* ContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF555ACA1D845EA5007F3AFB /* ContentCell.swift */; };
 		EF555ACD1D845FD8007F3AFB /* tasmanian-devil.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EF555ACC1D845FD8007F3AFB /* tasmanian-devil.jpg */; };
+		EF5896E51E5D13B8006D5392 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF5896E41E5D13B8006D5392 /* SQLite.framework */; };
 		EFACF5751D844C3500DBBC5F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFACF5741D844C3500DBBC5F /* AppDelegate.swift */; };
 		EFACF5771D844C3500DBBC5F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFACF5761D844C3500DBBC5F /* ViewController.swift */; };
 		EFACF57A1D844C3500DBBC5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EFACF5781D844C3500DBBC5F /* Main.storyboard */; };
@@ -19,8 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E2E48E14603DFE0A4DA9A15 /* databaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = databaseManager.swift; sourceTree = "<group>"; };
 		EF555ACA1D845EA5007F3AFB /* ContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCell.swift; sourceTree = "<group>"; };
 		EF555ACC1D845FD8007F3AFB /* tasmanian-devil.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "tasmanian-devil.jpg"; sourceTree = "<group>"; };
+		EF5896E21E5D0F19006D5392 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		EF5896E41E5D13B8006D5392 /* SQLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SQLite.framework; path = Carthage/Build/iOS/SQLite.framework; sourceTree = "<group>"; };
 		EFACF5711D844C3500DBBC5F /* Bluetooth Beacons iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bluetooth Beacons iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFACF5741D844C3500DBBC5F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EFACF5761D844C3500DBBC5F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,18 +44,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				EFACF58B1D844C6000DBBC5F /* EstimoteSDK.framework in Frameworks */,
+				EF5896E51E5D13B8006D5392 /* SQLite.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF5896E11E5D0F18006D5392 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EF5896E21E5D0F19006D5392 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EFACF5681D844C3500DBBC5F = {
 			isa = PBXGroup;
 			children = (
+				EF5896E41E5D13B8006D5392 /* SQLite.framework */,
 				EFACF58A1D844C6000DBBC5F /* EstimoteSDK.framework */,
 				EFACF5731D844C3500DBBC5F /* Bluetooth Beacons iOS */,
 				EFACF5721D844C3500DBBC5F /* Products */,
+				EF5896E11E5D0F18006D5392 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,6 +91,7 @@
 				EFACF57B1D844C3500DBBC5F /* Bluetooth_Beacons_iOS.xcdatamodeld */,
 				EFACF5891D844C5700DBBC5F /* ObjCBridge.h */,
 				EF555ACA1D845EA5007F3AFB /* ContentCell.swift */,
+				2E2E48E14603DFE0A4DA9A15 /* databaseManager.swift */,
 			);
 			path = "Bluetooth Beacons iOS";
 			sourceTree = "<group>";
@@ -156,6 +173,7 @@
 				EFACF5751D844C3500DBBC5F /* AppDelegate.swift in Sources */,
 				EFACF57D1D844C3500DBBC5F /* Bluetooth_Beacons_iOS.xcdatamodeld in Sources */,
 				EF555ACB1D845EA5007F3AFB /* ContentCell.swift in Sources */,
+				2E2E4F18BCB0CEF282A35895 /* databaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +294,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Bluetooth Beacons iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -293,6 +312,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Bluetooth Beacons iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
