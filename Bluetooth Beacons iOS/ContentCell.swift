@@ -11,6 +11,4 @@ import UIKit
 class ContentCell: UITableViewCell {
     
     @IBOutlet weak var ProtoLabel: UILabel!
-
-    @IBOutlet weak var ProtoImage: UIImageView!
 }
